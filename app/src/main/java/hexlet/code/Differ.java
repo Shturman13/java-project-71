@@ -32,8 +32,9 @@ class Differ implements Callable<Integer> {
     public Integer call() throws Exception { // your business logic goes here...
         var parsedFile1 = getData(filepath1);
         var parsedFile2 = getData(filepath2);
-        System.out.println(parsedFile1);
-        System.out.println(parsedFile2);
+//        System.out.println(parsedFile1);
+//        System.out.println(parsedFile2);
+        Compare.compare(parsedFile1, parsedFile2);
 //        byte[] fileContents = Files.readAllBytes(file.toPath());
 //        byte[] digest = MessageDigest.getInstance(algorithm).digest(fileContents);
 //        System.out.printf("%0" + (digest.length*2) + "x%n", new BigInteger(1, digest));
