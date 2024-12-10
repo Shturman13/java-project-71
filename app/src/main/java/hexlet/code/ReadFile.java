@@ -18,9 +18,9 @@ public class ReadFile {
         return Files.readString(path);
     }
 
-    public static Map getData(String pathToFile) throws IOException {
+    public static Map<String, Object> getData(String pathToFile) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map = objectMapper.readValue(readFile(getPath(pathToFile)), new TypeReference<>(){});
+        Map<String, Object> map = objectMapper.readValue(readFile(getPath(pathToFile)), new TypeReference<>() { });
         return map;
     }
 }

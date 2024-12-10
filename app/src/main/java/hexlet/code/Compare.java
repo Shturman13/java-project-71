@@ -1,21 +1,12 @@
 package hexlet.code;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static hexlet.code.ReadFile.getData;
-
 public class Compare {
-//    public static Map prepareForCompare(String filepath) throws IOException {
-//        var dataFromFile = new HashMap<>(getData(filepath));
-//        return dataFromFile;
-//    }
-
-    public static String compare(Map dataFromFile1, Map dataFromFile2) {
+    public static String compare(Map<String, Object> dataFromFile1, Map<String, Object> dataFromFile2) {
         var outputList = new ArrayList<String>();
 
         var dataMap1 = new HashMap<>(dataFromFile1);
@@ -23,11 +14,13 @@ public class Compare {
 
         dataFromFile2.forEach((key, value) -> {
             String sameParameter = "    " + key + ": " + value + "\n";
-            String differentParameter = "  - " + key + ": " + dataMap1.get(key) + "\n" + "  + " + key + ": " + value + "\n";
+            String differentParameter = "  - " + key + ": " + dataMap1.get(key) + "\n" + "  + "
+                + key + ": " + value + "\n";
 
             String keyExistIn1NotIn2 = "  + " + key + ": " + value + "\n";
 
-            var resultOfKeyExist = dataMap1.containsKey(key) ? (dataMap1.get(key).equals(dataMap2.get(key)) ? sameParameter : differentParameter)
+            var resultOfKeyExist = dataMap1.containsKey(key)
+                   ? (dataMap1.get(key).equals(dataMap2.get(key)) ? sameParameter : differentParameter)
                     : (keyExistIn1NotIn2);
             dataMap1.remove(key);
             outputList.add(resultOfKeyExist);

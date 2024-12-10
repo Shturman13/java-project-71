@@ -1,15 +1,9 @@
 package hexlet.code;
 
-import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-import java.io.File;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.security.MessageDigest;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -30,22 +24,12 @@ class Differ implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception { // your business logic goes here...
-        var parsedFile1 = getData(filepath1);
-        var parsedFile2 = getData(filepath2);
+        Map<String, Object> parsedFile1 = getData(filepath1);
+        Map<String, Object> parsedFile2 = getData(filepath2);
 //        System.out.println(parsedFile1);
 //        System.out.println(parsedFile2);
         Compare.compare(parsedFile1, parsedFile2);
-//        byte[] fileContents = Files.readAllBytes(file.toPath());
-//        byte[] digest = MessageDigest.getInstance(algorithm).digest(fileContents);
-//        System.out.printf("%0" + (digest.length*2) + "x%n", new BigInteger(1, digest));
         return 0;
     }
-
-    // this example implements Callable, so parsing, error handling and handling user
-    // requests for usage help or version help can be done with one line of code.
-//    public static void main(String... args) {
-//        int exitCode = new CommandLine(new Differ()).execute(args);
-//        System.exit(exitCode);
-//    }
 }
 
