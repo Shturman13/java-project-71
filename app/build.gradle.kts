@@ -7,7 +7,7 @@ plugins {
 
 jacoco {
     toolVersion = "0.8.12"
-    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
+    layout.buildDirectory.dir("reports/jacoco")
 }
 
 tasks.test {
@@ -19,7 +19,7 @@ tasks.jacocoTestReport {
 
 tasks.jacocoTestReport {
     reports {
-        xml.required = false
+        xml.required = true
         csv.required = false
         html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
     }
