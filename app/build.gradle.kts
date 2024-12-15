@@ -2,6 +2,27 @@ plugins {
     id("java")
     application
     checkstyle
+    jacoco
+}
+
+jacoco {
+    toolVersion = "0.8.12"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
 }
 
 group = "hexlet.code"
@@ -25,3 +46,6 @@ tasks.test {
 application {
     mainClass = "hexlet.code.App"
 }
+
+
+

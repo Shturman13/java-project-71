@@ -12,7 +12,7 @@ import static hexlet.code.ReadFile.getData;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference")
-class Differ implements Callable<Integer> {
+public class Differ implements Callable<Integer> {
 
     @Parameters(paramLabel = "filepath1", index = "0", description = "path to first file")
     private String filepath1;
