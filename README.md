@@ -8,3 +8,5 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/37b316ab95a0c87308ad/test_coverage)](https://codeclimate.com/github/Shturman13/java-project-71/test_coverage)
 
 [![asciicast](https://asciinema.org/a/NFIQgLVMu1ymFsqg4ESeOQeXi.svg)](https://asciinema.org/a/NFIQgLVMu1ymFsqg4ESeOQeXi)
+
+[![asciicast](https://asciinema.org/a/bipqQC3Fw3ZQoFdct797IZd0v.svg)](https://asciinema.org/a/bipqQC3Fw3ZQoFdct797IZd0v)
