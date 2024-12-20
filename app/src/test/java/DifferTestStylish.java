@@ -1,5 +1,4 @@
 import hexlet.code.Differ;
-import hexlet.code.Format;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -8,7 +7,7 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DifferTest {
+public class DifferTestStylish {
 
     public static Path getFixturePath(String fileName) {
         return Paths.get("src", "test", "resources", "fixtures", fileName)
@@ -29,9 +28,9 @@ public class DifferTest {
                 + "  - " + "timeout: 50" + "\n" + "  + "
                 + "timeout: 20" + "\n" + "  + " + "verbose: true" + "\n" + "}";
 
-        var actualJson = Format.stylish(Differ.generate(filepath1.toString(), filepath2.toString()));
+        var actualJson = Differ.generate(filepath1.toString(), filepath2.toString(), "stylish");
         assertEquals(expected, actualJson);
-        var actualYaml = Format.stylish(Differ.generate(filepath3.toString(), filepath4.toString()));
+        var actualYaml = Differ.generate(filepath3.toString(), filepath4.toString(), "stylish");
         assertEquals(expected, actualYaml);
     }
 
@@ -45,7 +44,7 @@ public class DifferTest {
                 + "host: not hexlet.io" + "\n" + "  - " + "proxy: 123.234.53.22" + "\n" + "  + "
                 + "proxy: 123.234.34.21" + "\n" + "    " + "timeout: 50" + "\n" + "  + " + "verbose: true" + "\n" + "}";
 
-        var actual = Format.stylish(Differ.generate(filepath3.toString(), filepath4.toString()));
+        var actual = Differ.generate(filepath3.toString(), filepath4.toString(), "stylish");
         assertEquals(expected, actual);
     }
 
@@ -61,7 +60,7 @@ public class DifferTest {
                 + "timeout: 100" + "\n" + "  - " + "verbose: true" + "\n" + "  + "
                 + "verbose: false" + "\n" + "}";
 
-        var actual = Format.stylish(Differ.generate(filepath8.toString(), filepath9.toString()));
+        var actual = Differ.generate(filepath8.toString(), filepath9.toString(), "stylish");
         assertEquals(expected, actual);
     }
 
@@ -85,10 +84,10 @@ public class DifferTest {
                 + "  + setting2: 300" + "\n" + "  - setting3: true" + "\n"
                 + "  + setting3: none" + "\n" + "}";
 
-        var actualJson = Format.stylish(Differ.generate(filepath6.toString(), filepath7.toString()));
+        var actualJson = Differ.generate(filepath6.toString(), filepath7.toString(), "stylish");
         assertEquals(expected, actualJson);
 
-        var actualYaml = Format.stylish(Differ.generate(filepath61.toString(), filepath71.toString()));
+        var actualYaml = Differ.generate(filepath61.toString(), filepath71.toString(), "stylish");
         assertEquals(expected, actualYaml);
 
     }
