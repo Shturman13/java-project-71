@@ -28,9 +28,9 @@ public class DifferTestStylish {
                 + "  - " + "timeout: 50" + "\n" + "  + "
                 + "timeout: 20" + "\n" + "  + " + "verbose: true" + "\n" + "}";
 
-        var actualJson = Differ.generate(filepath1.toString(), filepath2.toString(), "stylish");
+        var actualJson = Differ.generate(filepath1, filepath2, "stylish");
         assertEquals(expected, actualJson);
-        var actualYaml = Differ.generate(filepath3.toString(), filepath4.toString(), "stylish");
+        var actualYaml = Differ.generate(filepath3, filepath4, "stylish");
         assertEquals(expected, actualYaml);
     }
 
@@ -44,7 +44,7 @@ public class DifferTestStylish {
                 + "host: not hexlet.io" + "\n" + "  - " + "proxy: 123.234.53.22" + "\n" + "  + "
                 + "proxy: 123.234.34.21" + "\n" + "    " + "timeout: 50" + "\n" + "  + " + "verbose: true" + "\n" + "}";
 
-        var actual = Differ.generate(filepath3.toString(), filepath4.toString(), "stylish");
+        var actual = Differ.generate(filepath3, filepath4, "stylish");
         assertEquals(expected, actual);
     }
 
@@ -60,7 +60,7 @@ public class DifferTestStylish {
                 + "timeout: 100" + "\n" + "  - " + "verbose: true" + "\n" + "  + "
                 + "verbose: false" + "\n" + "}";
 
-        var actual = Differ.generate(filepath8.toString(), filepath9.toString(), "stylish");
+        var actual = Differ.generate(filepath8, filepath9, "stylish");
         assertEquals(expected, actual);
     }
 
@@ -84,10 +84,10 @@ public class DifferTestStylish {
                 + "  + setting2: 300" + "\n" + "  - setting3: true" + "\n"
                 + "  + setting3: none" + "\n" + "}";
 
-        var actualJson = Differ.generate(filepath6.toString(), filepath7.toString(), "stylish");
+        var actualJson = Differ.generate(filepath6, filepath7, "stylish");
         assertEquals(expected, actualJson);
 
-        var actualYaml = Differ.generate(filepath61.toString(), filepath71.toString(), "stylish");
+        var actualYaml = Differ.generate(filepath61, filepath71, "stylish");
         assertEquals(expected, actualYaml);
 
     }

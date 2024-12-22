@@ -19,8 +19,9 @@ public class Parser {
         return Files.readString(path);
     }
 
-    public static Map<String, Object> parse(String pathToFile) throws IOException {
-        String[] split = pathToFile.split("\\.");
+    public static Map<String, Object> parse(Path pathToFile) throws IOException {
+        var pathToFileString = pathToFile.toString();
+        String[] split = pathToFileString.split("\\.");
         Map<String, Object> map;
         ObjectMapper mapper = null;
         switch (split[1]) {
@@ -33,7 +34,7 @@ public class Parser {
             default:
                 throw new IllegalStateException("Unexpected value: " + split[1]);
         }
-        map = mapper.readValue(readFile(getPath(pathToFile)), new TypeReference<>() { });
+        map = mapper.readValue(readFile(getPath(pathToFile.toString())), new TypeReference<>() { });
         return map;
     }
 }

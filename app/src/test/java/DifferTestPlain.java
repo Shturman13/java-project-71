@@ -35,10 +35,10 @@ public class DifferTestPlain {
                 + "Property 'setting2' was updated. From 200 to 300\n"
                 + "Property 'setting3' was updated. From true to none\n";
 
-        var actualJson = Differ.generate(filepath6.toString(), filepath7.toString(), "plain");
+        var actualJson = Differ.generate(filepath6, filepath7, "plain");
         assertEquals(expected, actualJson);
 
-        var actualYaml = Differ.generate(filepath61.toString(), filepath71.toString(), "plain");
+        var actualYaml = Differ.generate(filepath61, filepath71, "plain");
         assertEquals(expected, actualYaml);
     }
 }

@@ -5,6 +5,7 @@ import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
@@ -13,10 +14,10 @@ import java.util.concurrent.Callable;
 public class Differ implements Callable<Integer> {
 
     @Parameters(paramLabel = "filepath1", index = "0", description = "path to first file")
-    private String filepath1;
+    private Path filepath1;
 
     @Parameters(paramLabel = "filepath2", index = "1", description = "path to second file")
-    private String filepath2;
+    private Path filepath2;
 
     @Option(names = {"-f", "--format"}, defaultValue = "stylish",
             paramLabel = "format", description = "output format [default: stylish]")
@@ -28,16 +29,15 @@ public class Differ implements Callable<Integer> {
         return 0;
     }
 
-    public static String generate(String filepath1, String filepath2, String formatName) throws IOException {
+    public static String generate(Path filepath1, Path filepath2, String formatName) throws IOException {
         Map<String, Object> parsedFile1 = Parser.parse(filepath1);
         Map<String, Object> parsedFile2 = Parser.parse(filepath2);
         Map<String, Map<String, Object>> result = Compare.compare(parsedFile1, parsedFile2);
 
         return Formatter.chooseFormat(result, formatName);
+    }
 
-//        System.out.println(parsedFile1);
-//        System.out.println(parsedFile2);
-//        System.out.println(result);
-
+    public static String generate(Path filepath1, Path filepath2) throws IOException {
+        return generate(filepath1, filepath2, "stylish");
     }
 }
