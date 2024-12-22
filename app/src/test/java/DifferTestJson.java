@@ -31,10 +31,10 @@ public class DifferTestJson {
                 + "\"setting1\":\"Some value /changedTo/ Another value\","
                 + "\"numbers2\":\"[2, 3, 4, 5] /changedTo/ [22, 33, 44, 55]\",\"checked\":\"false /changedTo/ true\","
                 + "\"id\":\"45 /changedTo/ null\"}}";
-        var actualJson = Differ.generate(filepath6, filepath7, "json");
+        var actualJson = Differ.generate(filepath6.toString(), filepath7.toString(), "json");
         assertEquals(expected, actualJson);
 
-        var actualYaml = Differ.generate(filepath61, filepath71, "json");
+        var actualYaml = Differ.generate(filepath61.toString(), filepath71.toString(), "json");
         assertEquals(expected, actualYaml);
     }
 }

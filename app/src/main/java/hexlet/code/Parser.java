@@ -19,9 +19,9 @@ public class Parser {
         return Files.readString(path);
     }
 
-    public static Map<String, Object> parse(Path pathToFile) throws IOException {
-        var pathToFileString = pathToFile.toString();
-        String[] split = pathToFileString.split("\\.");
+    public static Map<String, Object> parse(String pathToFile) throws IOException {
+//        var pathToFileString = pathToFile.toString();
+        String[] split = pathToFile.split("\\.");
         Map<String, Object> map;
         ObjectMapper mapper = null;
         switch (split[1]) {
