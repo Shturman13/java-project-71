@@ -78,6 +78,6 @@ public class Plain {
 
         outputList.sort((v1, v2) -> CharSequence.compare(v1.substring(10), v2.substring(10)));
         var comparedParameters = outputList.stream().collect(Collectors.joining(""));
-        return comparedParameters;
+        return comparedParameters.substring(0, comparedParameters.length() - 1);
     }
 }
