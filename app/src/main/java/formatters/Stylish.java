@@ -1,6 +1,7 @@
 package formatters;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -11,21 +12,29 @@ public class Stylish {
             value.forEach((key1, value1) -> {
                 String parameter;
                 switch (key) {
-                    case("sameValue"):
+                    case("SameKey"):
                         parameter = "    " + key1 + ": " + value1 + "\n";
                         outputList.add(parameter);
                         break;
-                    case("keyExistIn2NotIn1"):
+                    case("KeyAdded"):
                         parameter = "  + " + key1 + ": " + value1 + "\n";
                         outputList.add(parameter);
                         break;
-                    case("differentParameter"):
-                        String[] splitValue = value1.toString().split(" /changedTo/ ");
-                        parameter = "  - " + key1 + ": " + (key1 != null ? splitValue[0] : "null") + "\n" + "  + "
-                                + key1 + ": " + splitValue[1] + "\n";
-                        outputList.add(parameter);
+                    case("KeyChanged"):
+                        Object initialValue;
+                        Object finalValue;
+
+                        if (value1 instanceof List<?> && ((List<?>) value1).size() == 2) {
+                            List<?> arrayList = (List<?>) value1;
+
+                            initialValue = arrayList.get(0);
+                            finalValue = arrayList.get(1);
+                            parameter = "  - " + key1 + ": " + (initialValue) + "\n" + "  + "
+                                    + key1 + ": " + finalValue + "\n";
+                            outputList.add(parameter);
+                        }
                         break;
-                    case("keyExistIn1NotIn2"):
+                    case("KeyRemoved"):
                         parameter = "  - " + key1 + ": " + value1 + "\n";
                         outputList.add(parameter);
                         break;

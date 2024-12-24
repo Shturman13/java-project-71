@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,15 +11,15 @@ public class Compare {
         var dataMap2 = new HashMap<>(dataFromFile2);
 
         Map<String, Map<String, Object>> allParametersMap = new HashMap<>();
-        allParametersMap.put("sameValue", new HashMap<>());
-        allParametersMap.put("keyExistIn2NotIn1", new HashMap<>());
-        allParametersMap.put("differentParameter", new HashMap<>());
-        allParametersMap.put("keyExistIn1NotIn2", new HashMap<>());
+        allParametersMap.put("SameKey", new HashMap<>());
+        allParametersMap.put("KeyAdded", new HashMap<>());
+        allParametersMap.put("KeyChanged", new HashMap<>());
+        allParametersMap.put("KeyRemoved", new HashMap<>());
 
-        var sameValue = allParametersMap.get("sameValue");
-        var keyExistIn2NotIn1 = allParametersMap.get("keyExistIn2NotIn1");
-        var differentParameter = allParametersMap.get("differentParameter");
-        var keyExistIn1NotIn2 = allParametersMap.get("keyExistIn1NotIn2");
+        var sameValue = allParametersMap.get("SameKey");
+        var keyExistIn2NotIn1 = allParametersMap.get("KeyAdded");
+        var differentParameter = allParametersMap.get("KeyChanged");
+        var keyExistIn1NotIn2 = allParametersMap.get("KeyRemoved");
 
         dataMap2.forEach((key, value) -> {
             Object valueFromMap1 = dataMap1.get(key);
@@ -28,7 +29,10 @@ public class Compare {
                 if (valueFromMap1 != null && value != null && valueFromMap1.equals(valueFromMap2)) {
                     sameValue.put(key, value);
                 } else {
-                    differentParameter.put(key, (dataMap1.get(key) + " /changedTo/ " + value));
+                    var changedValue = new ArrayList<>();
+                    changedValue.add(dataMap1.get(key));
+                    changedValue.add(value);
+                    differentParameter.put(key, changedValue);
                 }
             } else {
                 keyExistIn2NotIn1.put(key, value);
@@ -39,8 +43,6 @@ public class Compare {
         if (!dataMap1.isEmpty()) {
             keyExistIn1NotIn2.putAll(dataMap1);
         }
-
         return allParametersMap;
     }
-
 }

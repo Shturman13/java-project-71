@@ -18,29 +18,55 @@ public class Plain {
             for (Map.Entry<String, Object> entry : value.entrySet()) {
                 String key1 = entry.getKey();
                 Object value1 = entry.getValue();
-                if (checkForComplexValue(value1)) {
-                    value1 = "[complex value]";
+
+                if (value1 instanceof String) {
+                    value1 = "'" + value1 + "'";
                 }
+                key1 = "'" + key1 + "'";
+
                 String parameter;
                 switch (key) {
-                    case ("sameValue"):
+                    case ("SameKey"):
                         break;
-                    case ("keyExistIn2NotIn1"):
-                        parameter = "Property '" + key1 + "' was added with value: " + value1 + "\n";
+                    case ("KeyAdded"):
+                        if (checkForComplexValue(value1)) {
+                            value1 = "[complex value]";
+                        }
+                        parameter = "Property " + key1 + " was added with value: " + value1 + "\n";
                         outputList.add(parameter);
                         break;
-                    case ("differentParameter"):
-                        String[] splitValue = value1.toString().split(" /changedTo/ ");
-                        var splitValue0 = (splitValue[0].contains("{")
-                                || splitValue[0].contains("[") ? "[complex value]" : splitValue[0]);
-                        var splitValue1 = (splitValue[1].contains("{")
-                                || splitValue[1].contains("[") ? "[complex value]" : splitValue[1]);
-                        parameter = "Property '" + key1 + "' was updated. From " + (key1 != null ? splitValue0 : "null")
-                                + " to " + splitValue1 + "\n";
-                        outputList.add(parameter);
+                    case ("KeyChanged"):
+                        Object initialValue;
+                        Object finalValue;
+
+                        if (value1 instanceof List<?> && ((List<?>) value1).size() == 2) {
+                            List<?> arrayList = (List<?>) value1;
+
+                            initialValue = arrayList.get(0);
+                            finalValue = arrayList.get(1);
+
+                            if (initialValue instanceof String) {
+                                initialValue = "'" + initialValue + "'";
+                            }
+                            if (finalValue instanceof String) {
+                                finalValue = "'" + finalValue + "'";
+                            }
+
+                            if (checkForComplexValue(initialValue)) {
+                                initialValue = "[complex value]";
+                            }
+
+                            if (checkForComplexValue(finalValue)) {
+                                finalValue = "[complex value]";
+                            }
+
+                            parameter = "Property " + key1 + " was updated. From " + initialValue
+                                    + " to " + finalValue + "\n";
+                            outputList.add(parameter);
+                        }
                         break;
-                    case ("keyExistIn1NotIn2"):
-                        parameter = "Property '" + key1 + "' removed" + "\n";
+                    case ("KeyRemoved"):
+                        parameter = "Property " + key1 + " was removed" + "\n";
                         outputList.add(parameter);
                         break;
                     default:
