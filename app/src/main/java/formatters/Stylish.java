@@ -6,7 +6,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Stylish {
+
     public static String stylish(Map<String, Map<String, Object>> allParametersMap) {
+        final int compareIndex = 4;
         var outputList = new ArrayList<String>();
         allParametersMap.forEach((key, value) -> {
             value.forEach((key1, value1) -> {
@@ -45,7 +47,7 @@ public class Stylish {
 
         });
 
-        outputList.sort((v1, v2) -> CharSequence.compare(v1.substring(4), v2.substring(4)));
+        outputList.sort((v1, v2) -> CharSequence.compare(v1.substring(compareIndex), v2.substring(compareIndex)));
         var comparedParameters = outputList.stream().collect(Collectors.joining("", "{\n", "}"));
         return comparedParameters;
     }

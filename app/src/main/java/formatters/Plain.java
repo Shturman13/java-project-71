@@ -8,11 +8,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Plain {
+
     private static boolean checkForComplexValue(Object value) {
         return value instanceof List || value instanceof Set || value instanceof Map || value instanceof Array;
     }
 
     public static String plain(Map<String, Map<String, Object>> allParametersMap) {
+        final int compareIndex = 10;
         var outputList = new ArrayList<String>();
         allParametersMap.forEach((key, value) -> {
             for (Map.Entry<String, Object> entry : value.entrySet()) {
@@ -76,7 +78,7 @@ public class Plain {
 
         });
 
-        outputList.sort((v1, v2) -> CharSequence.compare(v1.substring(10), v2.substring(10)));
+        outputList.sort((v1, v2) -> CharSequence.compare(v1.substring(compareIndex), v2.substring(compareIndex)));
         var comparedParameters = outputList.stream().collect(Collectors.joining(""));
         return comparedParameters.substring(0, comparedParameters.length() - 1);
     }

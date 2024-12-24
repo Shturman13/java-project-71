@@ -22,6 +22,14 @@ public class Differ implements Callable<Integer> {
             paramLabel = "format", description = "output format [default: stylish]")
     private String format;
 
+
+    /**
+     * @return
+     * print in console the method generate which compares 2 files
+     * and return result in String
+     * @throws Exception
+     * can throw Excetpion if filepath1 or filepath2 not exists
+     */
     @Override
     public Integer call() throws Exception {
         System.out.println(generate(filepath1, filepath2, format));
