@@ -23,8 +23,9 @@ public class DifferTestJson {
 
         var expected = "{\"SameKey\":{\"chars1\":[\"a\",\"b\",\"c\"],\"numbers1\":[1,2,3,4]},"
             + "\"KeyChanged\":{\"setting2\":[200,300],\"setting3\":[true,\"none\"],"
-            + "\"chars2\":[[\"d\",\"e\",\"f\"],false],"
-            + "\"default\":[null,[\"value1\",\"value2\"]],\"setting1\":[\"Some value\",\"Another value\"],"
+            + "\"default\":[null,[\"value1\",\"value2\"]],"
+                + "\"chars2\":[[\"d\",\"e\",\"f\"],false],"
+            + "\"setting1\":[\"Some value\",\"Another value\"],"
             + "\"numbers2\":[[2,3,4,5],[22,33,44,55]],"
             + "\"checked\":[false,true],\"id\":[45,null]},\"KeyAdded\":{\"key2\":\"value2\",\"numbers4\":[4,5,6],"
             + "\"obj1\":{\"nestedKey\":\"value\",\"isNested\":true}},"

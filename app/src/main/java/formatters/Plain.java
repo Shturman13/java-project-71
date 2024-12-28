@@ -27,6 +27,8 @@ public class Plain {
                 key1 = "'" + key1 + "'";
 
                 String parameter;
+                StringBuilder output = new StringBuilder("Property ");
+
                 switch (key) {
                     case ("SameKey"):
                         break;
@@ -34,24 +36,26 @@ public class Plain {
                         if (checkForComplexValue(value1)) {
                             value1 = "[complex value]";
                         }
-                        parameter = "Property " + key1 + " was added with value: " + value1 + "\n";
+                        parameter = output.append(key1).append(" was added with value: ").append(value1)
+                                .append("\n").toString();
                         outputList.add(parameter);
                         break;
                     case ("KeyChanged"):
                         Object initialValue;
                         Object finalValue;
-
-                        if (value1 instanceof List<?> && ((List<?>) value1).size() == 2) {
+                        if (value1 instanceof List) {
                             List<?> arrayList = (List<?>) value1;
 
                             initialValue = arrayList.get(0);
                             finalValue = arrayList.get(1);
 
+                            StringBuilder singleQuoteInitialValue = new StringBuilder("'");
+                            StringBuilder singleQuoteFinalValue = new StringBuilder("'");
                             if (initialValue instanceof String) {
-                                initialValue = "'" + initialValue + "'";
+                                initialValue = singleQuoteInitialValue.append(initialValue).append("'").toString();
                             }
                             if (finalValue instanceof String) {
-                                finalValue = "'" + finalValue + "'";
+                                finalValue = singleQuoteFinalValue.append(finalValue).append("'").toString();
                             }
 
                             if (checkForComplexValue(initialValue)) {
@@ -62,13 +66,13 @@ public class Plain {
                                 finalValue = "[complex value]";
                             }
 
-                            parameter = "Property " + key1 + " was updated. From " + initialValue
-                                    + " to " + finalValue + "\n";
+                            parameter = output.append(key1).append(" was updated. From ").append(initialValue)
+                                    .append(" to ").append(finalValue).append("\n").toString();
                             outputList.add(parameter);
                         }
                         break;
                     case ("KeyRemoved"):
-                        parameter = "Property " + key1 + " was removed" + "\n";
+                        parameter = output.append(key1).append(" was removed").append("\n").toString();
                         outputList.add(parameter);
                         break;
                     default:

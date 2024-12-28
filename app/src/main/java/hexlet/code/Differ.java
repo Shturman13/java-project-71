@@ -11,6 +11,10 @@ import java.util.concurrent.Callable;
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference")
 public class Differ implements Callable<Integer> {
+    public static final String STYLISHFORMAT = "stylish";
+    public static final String PLAINFORMAT = "plain";
+    public static final String JSONFORMAT = "json";
+
 
     @Parameters(paramLabel = "filepath1", index = "0", description = "path to first file")
     private String filepath1;
@@ -45,6 +49,6 @@ public class Differ implements Callable<Integer> {
     }
 
     public static String generate(String filepath1, String filepath2) throws IOException {
-        return generate(filepath1, filepath2, "stylish");
+        return generate(filepath1, filepath2, STYLISHFORMAT);
     }
 }
